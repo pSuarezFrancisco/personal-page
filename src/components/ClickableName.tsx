@@ -7,6 +7,7 @@ interface ClickableNameProps {
 
 const ClickableName: React.FC<ClickableNameProps> = ({ onClick }) => {
   const [isClicked, setIsClicked] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [clickPos, setClickPos] = useState({ x: 0, y: 0 });
   const name = "Francisco Suarez";
 

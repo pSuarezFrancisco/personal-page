@@ -7,7 +7,7 @@ const App: React.FC = () => {
   const [isScrollEnabled, setIsScrollEnabled] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 2000); // Simulated loading delay
+    const timer = setTimeout(() => setIsLoading(false), 500); // Simulated loading delay
     return () => clearTimeout(timer);
   }, []);
 

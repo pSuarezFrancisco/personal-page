@@ -14,7 +14,7 @@ const Loading: React.FC = React.memo(() => {
       style={loadingAnimation}
       className="flex items-center justify-center h-screen bg-gray-900 text-white"
     >
-      <h1 className="text-2xl font-semibold">Loading...</h1>
+      <h1 className="text-2xl font-semibold">Loading test...</h1>
     </animated.div>
   );
 });

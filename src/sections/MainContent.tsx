@@ -1,28 +1,59 @@
-import React from 'react';
-import ClickableName from '../components/ClickableName';
-import AboutMe from './AboutMe';
-import ProfessionalExperience from './ProfessionalExperience';
-import ArtGallery from './ArtGallery';
-import Contact from './Contact';
+import React, { useState, useEffect } from "react";
+import Intro from "./Intro"; // New component for the first section
+import AboutMe from "./AboutMe";
+import ProfessionalExperience from "./ProfessionalExperience";
+import ArtGallery from "./ArtGallery";
+import Contact from "./Contact";
+import TopMenu from "../components/TopMenu";
+import ScrollToTopButton from "../components/ScrollToTopButton";
 
-interface MainContentProps {
-  onEnableScroll: () => void;
-}
+const sections = ["AboutMe", "ProfessionalExperience", "ArtGallery", "Contact"];
 
-const MainContent: React.FC<MainContentProps> = React.memo(({ onEnableScroll }) => {
+const MainContent: React.FC<{ onEnableScroll: () => void }> = ({
+  onEnableScroll,
+}) => {
+  const [menuVisible, setMenuVisible] = useState(false);
+  const [showTopButton, setShowTopButton] = useState(false);
+
+  const handleEnableScroll = () => {
+    setMenuVisible(true);
+    onEnableScroll();
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPercentage =
+        (window.scrollY /
+          (document.documentElement.scrollHeight - window.innerHeight)) *
+        100;
+      setShowTopButton(scrollPercentage > 90);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToSection = (sectionId: string) => {
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div>
-      {/* First Screen */}
-      <div className="flex items-center justify-center h-screen bg-yellow-100 text-white">
-        <ClickableName onClick={onEnableScroll} />
-      </div>
-      {/* Scrollable Sections */}
+      {menuVisible && (
+        <TopMenu sections={sections} scrollToSection={scrollToSection} />
+      )}
+      <Intro onEnableScroll={handleEnableScroll} />
       <AboutMe />
       <ProfessionalExperience />
       <ArtGallery />
       <Contact />
+      <ScrollToTopButton onClick={scrollToTop} visible={showTopButton} />
     </div>
   );
-});
+};
 
 export default MainContent;

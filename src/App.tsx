@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Loading from './components/Loading';
+import { ModeProvider } from './context/ModeContext';
 import MainContent from './sections/MainContent';
 
 const App: React.FC = () => {
@@ -19,8 +20,11 @@ const App: React.FC = () => {
   const enableScroll = useCallback(() => setIsScrollEnabled(true), []);
 
   return (
-    isLoading ? <Loading /> : <MainContent onEnableScroll={enableScroll} />
-  );
+    isLoading ? <Loading /> : (
+      <ModeProvider>
+        <MainContent onEnableScroll={enableScroll} />
+      </ModeProvider>
+    )  );
 };
 
 export default App;

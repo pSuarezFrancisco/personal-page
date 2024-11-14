@@ -26,7 +26,7 @@ const MainContent: React.FC<{ onEnableScroll: () => void }> = ({
         (window.scrollY /
           (document.documentElement.scrollHeight - window.innerHeight)) *
         100;
-      setShowTopButton(scrollPercentage > 90);
+      setShowTopButton(scrollPercentage > 10);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -46,6 +46,7 @@ const MainContent: React.FC<{ onEnableScroll: () => void }> = ({
       {menuVisible && (
         <TopMenu sections={sections} scrollToSection={scrollToSection} />
       )}
+
       <Intro onEnableScroll={handleEnableScroll} />
       <AboutMe />
       <ProfessionalExperience />

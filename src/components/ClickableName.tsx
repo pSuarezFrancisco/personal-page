@@ -43,23 +43,24 @@ const ClickableName: React.FC<ClickableNameProps> = ({ onEnableScroll }) => {
     handleClick();
 
     if (!isClicked) {
-      // Get click position relative to the container
-      api.start((index) => {
-        // Calculate random angle and distance for each letter from the click point
-        const angle = Math.random() * 2 * Math.PI; // Random angle in radians
-        const distance = 100 + Math.random() * 200; // Random distance for radial spread
-        const x = Math.cos(angle) * distance;
-        const y = Math.sin(angle) * distance;
-        const rotate = (Math.random() - 0.5) * 720; // Random rotation between -360 and 360
+      setTimeout(() => {
+        // Get click position relative to the container
+        api.start((index) => {
+          const angle = Math.random() * 2 * Math.PI;
+          const distance = 100 + Math.random() * 200;
+          const x = Math.cos(angle) * distance;
+          const y = Math.sin(angle) * distance;
+          const rotate = (Math.random() - 0.5) * 720;
 
-        return {
-          x,
-          y,
-          rotate,
-          transform: "scale(1.2)",
-          config: { mass: 1, tension: 120, friction: 15 },
-        };
-      });
+          return {
+            x,
+            y,
+            rotate,
+            transform: "scale(1.2)",
+            config: { mass: 1, tension: 120, friction: 15 },
+          };
+        });
+      }, 700);
     } else {
       // Reset letters to original position
       api.start(() => ({
@@ -74,7 +75,7 @@ const ClickableName: React.FC<ClickableNameProps> = ({ onEnableScroll }) => {
 
   return (
     <div className="text-center">
-      <div className="relative" onClick={triggerExplosion}>
+      <div className="relative mt-[45rem]" onClick={triggerExplosion}>
         {springs.map((style, index) => (
           <animated.span
             key={index}

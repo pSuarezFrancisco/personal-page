@@ -25,8 +25,8 @@ const App: React.FC = () => {
     <Loading />
   ) : (
     <ModeProvider>
-      <PeaksAnimation />
-      <SquareSnakeAnimation />
+      {/* <PeaksAnimation />
+      <SquareSnakeAnimation /> */}
       <MainContent onEnableScroll={enableScroll} />
     </ModeProvider>
   );

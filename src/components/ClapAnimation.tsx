@@ -33,7 +33,15 @@ const ClapAnimation: React.FC<ClapAnimationProps> = ({ play }) => {
   }, [play]);
 
   return (
-    <div style={{ position: "relative", width: "100%", height: "100%" }}>
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
       {/* Forward Animation */}
       <video
         ref={forwardVideoRef}
@@ -42,9 +50,11 @@ const ClapAnimation: React.FC<ClapAnimationProps> = ({ play }) => {
         playsInline
         style={{
           display: isReversing ? "none" : "block",
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
+          width: "85%",
+          height: "auto",
+          objectFit: "contain",
+          position: "absolute",
+          bottom: 0,
         }}
       />
 
@@ -56,9 +66,11 @@ const ClapAnimation: React.FC<ClapAnimationProps> = ({ play }) => {
         playsInline
         style={{
           display: isReversing ? "block" : "none",
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
+          width: "85%",
+          height: "auto",
+          objectFit: "contain",
+          position: "absolute",
+          bottom: 0,
         }}
       />
     </div>

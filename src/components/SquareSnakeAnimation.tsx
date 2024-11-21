@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
-import SquareSnake from "../assets/data.json"; // Replace with your JSON file path
+import SquareSnake from "../assets/SquareSnake.json"; // Replace with your JSON file path
 
 const ScrollControlledLottie = () => {
   const [progress, setProgress] = useState(0);

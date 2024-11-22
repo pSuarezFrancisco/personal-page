@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ClickableName from "../components/ClickableName";
 import ClapAnimation from "../components/ClapAnimation";
-import { useSpring, animated } from "@react-spring/web";
+import { useSpring } from "@react-spring/web";
 import { useMode } from "../context/ModeContext";
 
 interface IntroProps {
@@ -13,6 +13,7 @@ const Intro: React.FC<IntroProps> = ({ onEnableScroll }) => {
   const [playAnimation, setPlayAnimation] = useState(false);
 
   // Spring animation for the "slam down" scroll effect
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [springProps, api] = useSpring(() => ({
     scrollY: 0,
     config: { tension: 400, friction: 30 },

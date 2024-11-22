@@ -97,7 +97,7 @@ const ProfessionalExperience: React.FC = () => {
 
       <div className="text-center mt-6">
         <a
-          href="https://drive.google.com/file/d/1gDh3cdbVkW0j4EPtSz-cPBhlLTE8eE7C/view?usp=sharing"
+          href="https://drive.google.com/file/d/14NGSyiSqd19DnJUE9EX5xjX_mg8WQpqh/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           className="text-lg font-semibold text-[#1543FA] hover:underline"
@@ -106,7 +106,7 @@ const ProfessionalExperience: React.FC = () => {
         </a>
         <br />
         <a
-          href="https://drive.google.com/uc?export=download&id=1gDh3cdbVkW0j4EPtSz-cPBhlLTE8eE7C"
+          href="https://drive.google.com/uc?export=download&id=14NGSyiSqd19DnJUE9EX5xjX_mg8WQpqh"
           className="inline-block bg-[#1543FA] text-white py-2 px-4 rounded hover:bg-blue-700 transition mt-4"
         >
           Download My CV

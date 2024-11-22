@@ -2,8 +2,6 @@ import React, { useState, useEffect, useCallback } from "react";
 import Loading from "./components/Loading";
 import { ModeProvider } from "./context/ModeContext";
 import MainContent from "./sections/MainContent";
-import PeaksAnimation from "./components/PeaksAnimation"; // Import the animation component
-import SquareSnakeAnimation from "./components/SquareSnakeAnimation"; // Import the animation component
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);

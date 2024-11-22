@@ -1,5 +1,8 @@
+import React from "react";
 import SectionText from "../components/SectionText";
+import { useSpring, animated } from "@react-spring/web";
 import { useMode } from "../context/ModeContext";
+import { useInView } from "react-intersection-observer";
 
 const AboutMe: React.FC = () => {
   const { getColor } = useMode();
@@ -38,6 +41,14 @@ const AboutMe: React.FC = () => {
     content.slice(4), // Last item
   ];
 
+  // Main title animation
+  const [ref, inView] = useInView({ triggerOnce: true });
+  const titleAnimation = useSpring({
+    from: { scale: 0.8, opacity: 0 },
+    to: { scale: inView ? 1 : 0.8, opacity: inView ? 1 : 0 },
+    config: { tension: 200, friction: 20 },
+  });
+
   return (
     <section
       style={{
@@ -46,6 +57,18 @@ const AboutMe: React.FC = () => {
       }}
       className="min-h-screen flex flex-col items-center justify-center p-10 bg-gray-100"
     >
+      {/* General Title */}
+      <animated.h1
+        ref={ref} // Attach in-view ref
+        style={{
+          transform: titleAnimation.scale.to((s) => `scale(${s})`),
+          opacity: titleAnimation.opacity,
+        }}
+        className="text-5xl font-extrabold mb-12 text-custom-stone text-center"
+      >
+        About Me
+      </animated.h1>
+
       {rows.map((row, rowIndex) => (
         <div
           key={rowIndex}

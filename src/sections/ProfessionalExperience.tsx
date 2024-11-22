@@ -1,5 +1,8 @@
+import React from "react";
 import SectionText from "../components/SectionText";
+import { useSpring, animated } from "@react-spring/web";
 import { useMode } from "../context/ModeContext";
+import { useInView } from "react-intersection-observer";
 
 const ProfessionalExperience: React.FC = () => {
   const { getColor } = useMode();
@@ -37,6 +40,19 @@ const ProfessionalExperience: React.FC = () => {
     },
   ];
 
+  // Define the section title
+  const title = "Professional Experience";
+
+  // In-view detection for triggering the animation
+  const [ref, inView] = useInView({ triggerOnce: true });
+
+  // Animation for the whole title
+  const titleAnimation = useSpring({
+    from: { rotate: 0 },
+    to: { rotate: inView ? 360 : 0 },
+    config: { tension: 200, friction: 20 },
+  });
+
   return (
     <section
       style={{
@@ -45,8 +61,20 @@ const ProfessionalExperience: React.FC = () => {
       }}
       className="min-h-screen flex flex-col items-center justify-center p-10 bg-gray-100"
     >
+      {/* General Title with One-Time Rotation Animation */}
+      <animated.h1
+        ref={ref} // Ref for in-view detection
+        style={{
+          transform: titleAnimation.rotate.to((r) => `rotate(${r}deg)`),
+          transformOrigin: "center",
+        }}
+        className="text-5xl font-extrabold mb-12 text-custom-stone text-center"
+      >
+        {title}
+      </animated.h1>
+
       {roles.map(({ title, dates, description }, idx) => (
-        <div key={idx} className="mb-12 text-center">
+        <div key={idx} className="mb-12 text-center max-w-xl">
           <h2
             className="text-3xl font-bold mb-4 text-custom-stone"
             style={{ fontFamily: "'Playfair Display', serif" }}
@@ -66,6 +94,24 @@ const ProfessionalExperience: React.FC = () => {
           )}
         </div>
       ))}
+
+      <div className="text-center mt-6">
+        <a
+          href="https://drive.google.com/file/d/1gDh3cdbVkW0j4EPtSz-cPBhlLTE8eE7C/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-lg font-semibold text-[#1543FA] hover:underline"
+        >
+          View My CV
+        </a>
+        <br />
+        <a
+          href="https://drive.google.com/uc?export=download&id=1gDh3cdbVkW0j4EPtSz-cPBhlLTE8eE7C"
+          className="inline-block bg-[#1543FA] text-white py-2 px-4 rounded hover:bg-blue-700 transition mt-4"
+        >
+          Download My CV
+        </a>
+      </div>
     </section>
   );
 };

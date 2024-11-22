@@ -74,7 +74,12 @@ const ClickableName: React.FC<ClickableNameProps> = ({ onEnableScroll }) => {
   };
 
   return (
-    <div className="text-center">
+    <div
+      className="text-center"
+      style={{
+        fontFamily: "'Playfair Display', serif",
+      }}
+    >
       <div className="relative mt-[45rem]" onClick={triggerExplosion}>
         {springs.map((style, index) => (
           <animated.span

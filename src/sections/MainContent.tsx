@@ -4,19 +4,14 @@ import AboutMe from "./AboutMe";
 import ProfessionalExperience from "./ProfessionalExperience";
 import ArtGallery from "./ArtGallery";
 import Contact from "./Contact";
-import TopMenu from "../components/TopMenu";
 import ScrollToTopButton from "../components/ScrollToTopButton";
-
-const sections = ["AboutMe", "ProfessionalExperience", "ArtGallery", "Contact"];
 
 const MainContent: React.FC<{ onEnableScroll: () => void }> = ({
   onEnableScroll,
 }) => {
-  const [menuVisible, setMenuVisible] = useState(false);
   const [showTopButton, setShowTopButton] = useState(false);
 
   const handleEnableScroll = () => {
-    setMenuVisible(true);
     onEnableScroll();
   };
 
@@ -33,20 +28,12 @@ const MainContent: React.FC<{ onEnableScroll: () => void }> = ({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
-  };
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <div>
-      {menuVisible && (
-        <TopMenu sections={sections} scrollToSection={scrollToSection} />
-      )}
-
       <Intro onEnableScroll={handleEnableScroll} />
       <AboutMe />
       <ProfessionalExperience />

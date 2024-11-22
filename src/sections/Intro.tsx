@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ClickableName from "../components/ClickableName";
 import ClapAnimation from "../components/ClapAnimation";
+import { useSpring, animated } from "@react-spring/web";
 import { useMode } from "../context/ModeContext";
 
 interface IntroProps {
@@ -11,12 +12,36 @@ const Intro: React.FC<IntroProps> = ({ onEnableScroll }) => {
   const { getColor } = useMode();
   const [playAnimation, setPlayAnimation] = useState(false);
 
+  // Spring animation for the "slam down" scroll effect
+  const [springProps, api] = useSpring(() => ({
+    scrollY: 0,
+    config: { tension: 400, friction: 30 },
+    onChange: ({ value }) => {
+      window.scrollTo(0, value.scrollY); // Update the scroll position
+    },
+  }));
+
   const handleNameClick = () => {
     setPlayAnimation(true); // Trigger the video animation
+
     setTimeout(() => {
       setPlayAnimation(false); // Reset after the animation ends
+
+      // Start the "slam down" animation
+      api.start({
+        scrollY: 400, // Adjust this value for the desired scroll distance
+        config: { tension: 400, friction: 30, mass: 2 },
+        onRest: () => {
+          // Bounce effect
+          api.start({
+            scrollY: 350,
+            config: { tension: 200, friction: 15 },
+          });
+        },
+      });
+
+      onEnableScroll(); // Enable scrolling after the animation
     }, 1000); // Adjust timeout to match video duration
-    onEnableScroll(); // Enable scrolling after the first click
   };
 
   return (

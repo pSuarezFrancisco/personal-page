@@ -60,7 +60,7 @@ const ClickableName: React.FC<ClickableNameProps> = ({ onEnableScroll }) => {
             config: { mass: 1, tension: 120, friction: 15 },
           };
         });
-      }, 700);
+      }, 1300);
     } else {
       // Reset letters to original position
       api.start(() => ({
@@ -80,7 +80,7 @@ const ClickableName: React.FC<ClickableNameProps> = ({ onEnableScroll }) => {
         fontFamily: "'Playfair Display', serif",
       }}
     >
-      <div className="relative mt-[45rem]" onClick={triggerExplosion}>
+      <div className="relative mt-[35rem]" onClick={triggerExplosion}>
         {springs.map((style, index) => (
           <animated.span
             key={index}
@@ -92,7 +92,7 @@ const ClickableName: React.FC<ClickableNameProps> = ({ onEnableScroll }) => {
               display: "inline-block",
               marginRight: index === name.length - 1 ? 0 : 2,
             }}
-            className="text-4xl font-bold cursor-pointer text-custom-stone"
+            className="text-6xl font-bold cursor-pointer text-custom-stone"
           >
             {name[index]}
           </animated.span>

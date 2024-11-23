@@ -2,10 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { useSpring, animated } from "@react-spring/web";
 import { FaInstagram, FaLinkedin, FaEnvelope, FaGithub } from "react-icons/fa";
 import { useMode } from "../context/ModeContext";
+import LookingAnimation from "../components/LookingAnimation";
 
 const Contact: React.FC = () => {
   const { getColor } = useMode();
   const [tooltipVisible, setTooltipVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
   const email = "psuarez.francisco@gmail.com";
 
@@ -40,12 +42,16 @@ const Contact: React.FC = () => {
 
   return (
     <section
+      ref={sectionRef}
       style={{
         fontFamily: "'Playfair Display', serif",
         backgroundColor: getColor(4),
+        position: "relative", // Ensure child elements are positioned relative to this
+        overflow: "hidden", // Prevent accidental overflow
       }}
-      className="min-h-screen flex flex-col items-center justify-center p-10"
+      className="min-h-screen flex flex-col items-center justify-center p-10 overflow-x-hidden"
     >
+      <LookingAnimation sectionRef={sectionRef} />
       {/* Animated Title */}
       <animated.div
         style={springProps}
@@ -56,7 +62,7 @@ const Contact: React.FC = () => {
       </animated.div>
 
       {/* Description */}
-      <p className="text-lg text-center max-w-xl mb-6">
+      <p className="text-lg text-center max-w-xl mb-6 z-10">
         Feel free to reach out—whether by message, email, or through the power
         of thought.
       </p>
@@ -67,7 +73,7 @@ const Contact: React.FC = () => {
           href="https://www.instagram.com/franciscogermi"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-3xl text-[#E4405F] hover:text-[#B3314B] transition"
+          className="text-3xl text-[#E4405F] hover:text-[#B3314B] transition z-10"
         >
           <FaInstagram />
         </a>
@@ -75,7 +81,7 @@ const Contact: React.FC = () => {
           href="https://www.linkedin.com/in/francisco-su%C3%A1rez-22aa0511b/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-3xl text-[#0077B5] hover:text-[#005582] transition"
+          className="text-3xl text-[#0077B5] hover:text-[#005582] transition z-10"
         >
           <FaLinkedin />
         </a>
@@ -83,7 +89,7 @@ const Contact: React.FC = () => {
           href="https://github.com/pSuarezFrancisco"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-3xl text-[#171515] hover:text-gray-700 transition"
+          className="text-3xl text-[#171515] hover:text-gray-700 transition z-10"
         >
           <FaGithub />
         </a>

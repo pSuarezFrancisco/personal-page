@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 // Colors for each section in two modes
 const colors = {
   default: ["#fef08a", "#fde047", "#facc15", "#f59e0b", "#d97706"],
-  germi: ["#fef08a", "#fde047", "#facc15", "#f59e0b", "#d97706"],
+  germi: ["#FFFFFF", "#fde047", "#facc15", "#f59e0b", "#d97706"],
 };
 
 type ModeContextType = {

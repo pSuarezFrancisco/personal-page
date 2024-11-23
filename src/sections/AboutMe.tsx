@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useRef } from "react";
 import SectionText from "../components/SectionText";
 import { useSpring, animated } from "@react-spring/web";
 import { useMode } from "../context/ModeContext";
 import { useInView } from "react-intersection-observer";
+import SpinningAnimation from "../components/SpinningAnimation";
 
 const AboutMe: React.FC = () => {
   const { getColor } = useMode();
+
+  // Ref for the section container
+  const sectionRef = useRef<HTMLElement>(null);
 
   const content = [
     {
       title: "The Beginning",
       paragraph:
-        "From getting my first computer at the age of four to designing elegant interfaces today, my journey into development has been fueled by curiosity and creativity. Over the years, I’ve had the privilege of working across industries—from agriculture and government services to insurance systems, ERPs, and mobile apps for startups. I’ve also developed proof-of-concepts and integrated platforms like Salesforce, Power Apps, Genesys, and Slack.",
+        "From getting my first computer as a kid to designing elegant interfaces today, my journey into development has been fueled by curiosity and creativity. Over the years, I’ve had the privilege of working across industries—from agriculture and government services to insurance systems, ERPs, and mobile apps for startups. I’ve also developed proof-of-concepts and integrated platforms like Salesforce, Power Apps, Genesys, and Slack.",
     },
     {
       title: "The Developer-Artist Hybrid",
@@ -51,12 +55,16 @@ const AboutMe: React.FC = () => {
 
   return (
     <section
+      ref={sectionRef}
       style={{
         fontFamily: "'Playfair Display', serif",
         backgroundColor: getColor(1),
+        position: "relative", // Ensure child elements are positioned relative to this
+        overflow: "hidden", // Prevent accidental overflow
       }}
-      className="min-h-screen flex flex-col items-center justify-center p-10 bg-gray-100"
+      className="min-h-screen flex flex-col items-center justify-center p-10 bg-gray-100 overflow-x-hidden"
     >
+      <SpinningAnimation sectionRef={sectionRef} />
       {/* General Title */}
       <animated.h1
         ref={ref} // Attach in-view ref
@@ -79,7 +87,7 @@ const AboutMe: React.FC = () => {
           }`}
         >
           {row.map(({ title, paragraph }, idx) => (
-            <div key={idx} className="mb-8 text-center max-w-lg">
+            <div key={idx} className="mb-8 text-center max-w-lg z-10">
               <h2 className="text-4xl font-bold mb-6 text-custom-stone">
                 {title}
               </h2>

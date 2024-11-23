@@ -59,7 +59,7 @@ const ProfessionalExperience: React.FC = () => {
         fontFamily: "'Playfair Display', serif",
         backgroundColor: getColor(2),
       }}
-      className="min-h-screen flex flex-col items-center justify-center p-10 bg-gray-100"
+      className="min-h-screen flex flex-col items-center justify-center p-10 bg-gray-100 overflow-x-hidden"
     >
       {/* General Title with One-Time Rotation Animation */}
       <animated.h1

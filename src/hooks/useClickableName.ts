@@ -1,12 +1,10 @@
 import { useState, useCallback } from 'react';
-import { useMode } from '../context/ModeContext';
 import { useSpring } from '@react-spring/web';
 
 export const useClickableName = (onEnableScroll: () => void) => {
   const [isClicked, setIsClicked] = useState(false);
   const [message, setMessage] = useState(""); // Start with an empty message
   const [hasActivated, setHasActivated] = useState(false); // Tracks if Germi mode was activated once
-  const { toggleMode } = useMode();
 
   // Fade-out effect only for "Back to default."
   const messageFade = useSpring({
@@ -20,7 +18,6 @@ export const useClickableName = (onEnableScroll: () => void) => {
 
   const handleClick = useCallback(() => {
     setIsClicked((prev) => !prev);
-    toggleMode();
 
     if (!hasActivated) {
       // First click: Activate Germi mode and display message
@@ -34,7 +31,7 @@ export const useClickableName = (onEnableScroll: () => void) => {
       // Re-activating Germi mode
       setMessage("Germi mode activated.");
     }
-  }, [isClicked, toggleMode, hasActivated, onEnableScroll]);
+  }, [isClicked, hasActivated, onEnableScroll]);
 
   return {
     isClicked,

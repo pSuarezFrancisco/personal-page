@@ -37,6 +37,7 @@ const ClapAnimation: React.FC<ClapAnimationProps> = ({ play }) => {
         height: "100%",
         display: "flex",
         justifyContent: "center",
+        overflowX: "hidden",
       }}
     >
       {/* Forward Animation */}
@@ -46,11 +47,10 @@ const ClapAnimation: React.FC<ClapAnimationProps> = ({ play }) => {
         muted
         playsInline
         style={{
-          width: "85%",
           height: "auto",
-          objectFit: "contain",
           position: "absolute",
           bottom: 0,
+          maxWidth: "unset",
         }}
       />
     </div>

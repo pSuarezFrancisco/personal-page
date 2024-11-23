@@ -48,7 +48,7 @@ const Intro: React.FC<IntroProps> = ({ onEnableScroll }) => {
   return (
     <section
       style={{ backgroundColor: getColor(0), position: "relative" }}
-      className="min-h-screen flex flex-col items-center justify-center text-white p-10"
+      className="min-h-screen flex flex-col items-center justify-center text-white p-10 overflow-hidden"
     >
       {/* Video Animation (Behind the Name) */}
       <div className="absolute inset-0 z-0">

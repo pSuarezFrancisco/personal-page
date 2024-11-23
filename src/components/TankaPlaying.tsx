@@ -38,11 +38,11 @@ const TankaPlaying: React.FC<TankaPlayingProps> = ({ sectionRef }) => {
   return (
     <div
       style={{
-        position: "absolute", // Scoped to the ArtGallery section
-        bottom: "-15%", // Offset towards the bottom
-        right: "-20%", // Default value
-        transform: "translate(0%, 0%)", // Ensure proper alignment
-        pointerEvents: "none", // Prevent interaction
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        justifyContent: "center",
+        overflowX: "hidden",
       }}
       className="tanka-animation" // Add a class for responsive breakpoints
     >
@@ -53,9 +53,10 @@ const TankaPlaying: React.FC<TankaPlayingProps> = ({ sectionRef }) => {
         playsInline
         loop // Enable looping
         style={{
-          width: "100%", // Increased size for a bigger visual impact
-          height: "auto", // Maintain aspect ratio
-          objectFit: "contain", // Ensure proper scaling
+          height: "auto",
+          position: "absolute",
+          bottom: "-18%",
+          maxWidth: "unset",
         }}
       />
     </div>

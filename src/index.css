@@ -20,3 +20,29 @@ code {
 .text-custom-stone {
   @apply text-stone-800; /* This applies Tailwind’s blue-500 text color */
 }
+
+/* Default (small screens) */
+.tanka-animation {
+  right: 5%;
+}
+
+/* Medium screens (tablet-sized) */
+@media (min-width: 768px) {
+  .tanka-animation {
+    right: 10%;
+  }
+}
+
+/* Large screens (desktop-sized) */
+@media (min-width: 1024px) {
+  .tanka-animation {
+    right: 20%;
+  }
+}
+
+/* Extra-large screens (wide desktop-sized) */
+@media (min-width: 1440px) {
+  .tanka-animation {
+    right: 30%;
+  }
+}

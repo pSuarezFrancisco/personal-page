@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSprings, animated } from "@react-spring/web";
 import { useMode } from "../context/ModeContext";
+import TankaPlaying from "../components/TankaPlaying";
 
 const ArtGallery: React.FC = () => {
   const { getColor } = useMode();
@@ -8,6 +9,9 @@ const ArtGallery: React.FC = () => {
 
   // State to control when the animation starts
   const [isVisible, setIsVisible] = useState(false);
+
+  // Ref for the section container
+  const sectionRef = useRef<HTMLElement>(null);
 
   // Ref for the title container
   const titleRef = useRef<HTMLDivElement>(null);
@@ -53,12 +57,16 @@ const ArtGallery: React.FC = () => {
 
   return (
     <section
+      ref={sectionRef} // Attach ref to the ArtGallery section
       style={{
         fontFamily: "'Playfair Display', serif",
         backgroundColor: getColor(3),
+        position: "relative", // Ensure child elements are positioned relative to this
+        overflow: "hidden", // Prevent accidental overflow
       }}
       className="min-h-screen flex flex-col items-center justify-center p-10"
     >
+      <TankaPlaying sectionRef={sectionRef} />
       {/* Animated Title */}
       <div ref={titleRef} className="mb-12 text-center">
         {title.split("").map((letter, index) => (
@@ -77,10 +85,10 @@ const ArtGallery: React.FC = () => {
       </div>
 
       {/* Placeholder Message */}
-      <div className="text-center">
+      <div className="text-center z-40">
         <p className="text-lg md:text-xl text-gray-800 max-w-lg mx-auto">
           This section is under construction because Tanka insisted we play
-          fetch instead. Priorities, right?
+          instead. Priorities, right?
         </p>
       </div>
     </section>

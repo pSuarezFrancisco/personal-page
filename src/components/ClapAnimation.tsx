@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 
 interface ClapAnimationProps {
   play: boolean; // Controls whether the animation should play
@@ -7,7 +7,6 @@ interface ClapAnimationProps {
 const ClapAnimation: React.FC<ClapAnimationProps> = ({ play }) => {
   const forwardVideoRef = useRef<HTMLVideoElement>(null);
   const reverseVideoRef = useRef<HTMLVideoElement>(null);
-  const [isReversing, setIsReversing] = useState(false);
 
   useEffect(() => {
     const forwardVideo = forwardVideoRef.current;
@@ -15,14 +14,12 @@ const ClapAnimation: React.FC<ClapAnimationProps> = ({ play }) => {
 
     if (play) {
       // Start playing the forward animation
-      setIsReversing(false);
       if (forwardVideo) {
         forwardVideo.currentTime = 0;
         forwardVideo.play();
 
         forwardVideo.onended = () => {
           // Trigger the reversed animation after the forward animation ends
-          setIsReversing(true);
           if (reverseVideo) {
             reverseVideo.currentTime = 0;
             reverseVideo.play();
@@ -49,23 +46,6 @@ const ClapAnimation: React.FC<ClapAnimationProps> = ({ play }) => {
         muted
         playsInline
         style={{
-          display: isReversing ? "none" : "block",
-          width: "85%",
-          height: "auto",
-          objectFit: "contain",
-          position: "absolute",
-          bottom: 0,
-        }}
-      />
-
-      {/* Reverse Animation */}
-      <video
-        ref={reverseVideoRef}
-        src="/clap-animation-reverse.webm" // Path to your reversed WebM
-        muted
-        playsInline
-        style={{
-          display: isReversing ? "block" : "none",
           width: "85%",
           height: "auto",
           objectFit: "contain",

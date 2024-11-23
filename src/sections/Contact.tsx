@@ -89,7 +89,7 @@ const Contact: React.FC = () => {
         </a>
         <button
           onClick={copyEmailToClipboard}
-          className="relative text-3xl text-[#1543FA] hover:text-blue-700 transition"
+          className="relative text-3xl text-[#1543FA] hover:text-[#0077B5] transition"
         >
           <FaEnvelope />
           {tooltipVisible && (

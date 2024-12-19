@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Live Demo
+
+Check out the live version of this project (not mobile friendly yet) : [Personal Page](https://personal-page-dun-six.vercel.app/)
+
 ## Available Scripts
 
 In the project directory, you can run:
